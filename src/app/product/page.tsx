@@ -34,9 +34,10 @@ export default async function ProductDetailPage(props: ProductPageProps) {
                 alt="Image"
               />
               <h1 className="text-xl font-semibold mt-4">
-                {product.title.length > 25
-                  ? product.title.substring(0, 25) + "..."
-                  : product.title}
+                {/* {product.name.length > 25
+                  ? product.name.substring(0, 25) + "..."
+                  : product.name} */}
+                  {product.name}
               </h1>
               <div className="flex justify-between items-center mt-2">
                 <div>

@@ -1,3 +1,4 @@
+import { retrieveData, retriveDataById } from "@/lib/firebase/service";
 import { NextRequest, NextResponse } from "next/server";
 
 // Siapkan Data
@@ -23,7 +24,6 @@ const data = [
     image:
       "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/8535fa44-afb6-4a64-aac4-3a9b769af79e/air-max-pulse-shoes-zD62r3.png",
   },
- 
 ];
 
 export async function GET(request: NextRequest) {
@@ -33,7 +33,8 @@ export async function GET(request: NextRequest) {
 
   // Menampilkan data sesuai yang dicari aja
   if (id) {
-    const detailProduct = data.find((product) => product.id === Number(id)); //Temukan Detail Product dengan mengconvert id ke number
+    // const detailProduct = data.find((product) => product.id === Number(id)); //Temukan Detail Product dengan mengconvert id ke number
+    const detailProduct = await retriveDataById("products", id);
     // Jika ada detail product (?id=...)
     if (detailProduct) {
       return NextResponse.json({
@@ -49,5 +50,8 @@ export async function GET(request: NextRequest) {
       data: {},
     });
   }
-  return NextResponse.json({ status: 200, message: "Success", data });
+
+  const products = await retrieveData("products");
+
+  return NextResponse.json({ status: 200, message: "Success", data: products });
 }

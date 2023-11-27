@@ -19,7 +19,7 @@ export default async function ProductDetailPage(props: any) {
             alt=""
           />
           <div className="bg-white p-4 px-6">
-            <h3>{product.data.title}</h3>
+            <h3>{product.data.name}</h3>
             <p>{product.data.price}</p>
           </div>
         </div>
